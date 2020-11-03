@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
 
-    before_action :find_dish, only: [:show, :edit, :update, :destroy, :add_getter]
+    before_action :find_dish, only: [:show, :edit, :update, :destroy, :add_getter, :add_poster]
     
     def index
         @dishes = Dish.all
@@ -14,9 +14,8 @@ class DishesController < ApplicationController
     end
 
     def create
-        # puts params.inspect
         @dish = Dish.new(sanitized_params)
-        # byebug
+        byebug
         if @dish.save
             redirect_to dish_path(@dish)
         else
@@ -51,6 +50,15 @@ class DishesController < ApplicationController
         render :add
     end
 
+    def add_poster
+        # byebug
+        ingredient = Ingredient.find(sanitized_ingredients[:ingredient_id])
+        quantity = sanitized_ingredients[:ingredient_quantity].to_i
+        @dish.add_ingredient(ingredient, quantity)
+
+        redirect_to dish_path(@dish)
+    end
+
     private
 
     def find_dish
@@ -59,6 +67,10 @@ class DishesController < ApplicationController
 
     def sanitized_params
         params.require(:dish).permit(:name, :meal_type, :user_id)
+    end
+
+    def sanitized_ingredients
+        params.require(:dish).permit(:ingredient_id, :ingredient_quantity)
     end
 
 end

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # ~~ DISH ROUTES ~~ #
   post '/sorted', to: 'dishes#sort', as: 'sort'
   get 'dishes/:id/add_ingredient', to: 'dishes#add_getter', as: 'add_ingredient'
-  post 'dishes/:id/add_ingredient', to: 'dishes#add_poster' as: 'post_ingredient'
+  post 'dishes/:id/add_ingredient', to: 'dishes#add_poster', as: 'post_ingredient'
   resources :dishes
 
   # ~~ ETC ~~ # 

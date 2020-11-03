@@ -7,7 +7,7 @@ class Dish < ApplicationRecord
 
   attr_accessor :ingredient_id, :ingredient_quantity
 
-  def add_ingredient(ingredient:, quantity:)
+  def add_ingredient(ingredient, quantity)
     quantity.times do |i|
       self.ingredients << ingredient
     end

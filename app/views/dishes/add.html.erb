@@ -1,25 +1,11 @@
 <h1>Add Ingredients</h1>
 
-<%= form_for @dish do |f| %>
-
-<%= f.label :ingredient %>
-<%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %><br>
-
-<%= f.label :quantity %>
-<%= f.number_field :ingredient_quantity %>
-
-<%= f.submit %>
-
 <%= form_tag post_ingredient_path do %>
 
   <label>Ingredient:</label><br>
-  <input type="text" id="post_title" name="post[title]"><br>
+  <%= collection_select :dish, :ingredient_id, Ingredient.all, :id, :name %><br>
 
   <label>quantity:</label><br>
-  <textarea id="post_description" name="post[description]"></textarea><br>
-
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="submit" value="Submit Post">
-<% end %>
-
+  <%= number_field :dish, :ingredient_quantity %>
+  <input type="submit" value="Update Ingredients">
 <% end %>
