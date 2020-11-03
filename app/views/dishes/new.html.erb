@@ -1,0 +1,22 @@
+<h1><%= @dish.id ? "Edit Dish" : "New Dish" %></h1>
+
+<% @dish.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+<% end %>
+
+<%= form_for @dish do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :meal_type %>
+    <%= f.select :meal_type, ["Breakfast", "Lunch", "Dinner", "Appetizers", "Sweets"] %><br>
+
+    <%= f.label :user %>
+    <%= f.collection_select :user_id, User.all, :id, :name %><br>
+
+    <%= f.submit %>
+
+<% end %><br>
+
+<%= link_to "All Dishes", dishes_path %>

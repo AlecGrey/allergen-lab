@@ -1,0 +1,24 @@
+<h1><%= @dish.name %></h1>
+
+<h3><%= @dish.meal_type %></h3>
+
+<h3>Recipe:</h3>
+
+<table>
+    <tr>
+        <th>Name</th>
+    </tr>
+    <% @dish.ingredients.each do |ing| %>
+        <tr>
+            <td><%= ing.name %></td>
+        </tr>
+    <% end %>
+</table><br>
+
+<%= link_to "Add Ingredient", add_ingredient_path %>
+
+<%= link_to "Edit Dish", edit_dish_path %>
+
+<%= button_to "Delete Dish", dish_path(@dish), method: :delete %>
+
+<%= link_to "All Dishes", dishes_path %>
